@@ -46,6 +46,14 @@ Before deploying the app to your own production instance, I recommend installing
     sfdx force:org:create -s -f config/project-scratch-def.json -a event-engagement-app
     ```
 
+1. Open the scratch org:
+
+    ```
+    sfdx force:org:open
+    ```
+
+1. Create a community with the **Build your own (LWR)** template, and name it `Event Engagement App`.
+
 1. Push the app to your scratch org:
 
     ```
@@ -63,14 +71,8 @@ Before deploying the app to your own production instance, I recommend installing
     ```
     sfdx force:data:tree:import -p ./data/data-plan.json
     ```
-
-1. Open the scratch org:
-
-    ```
-    sfdx force:org:open
-    ```
     
-1. Enable Path from Setup->Path Settings
+1. Enable Path from Setup -> Path Settings
     
 
 ## Make it your own
