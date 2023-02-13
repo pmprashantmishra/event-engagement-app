@@ -1,0 +1,11 @@
+{
+  "type" : "sfdc_cms__appPage",
+  "title" : "main",
+  "contentBody" : {
+    "currentThemeId" : "Build_Your_Own_LWR",
+    "headMarkup" : "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n<title>Welcome to LWC Communities!</title>\n\n<link rel=\"stylesheet\" href=\"{ basePath }/assets/styles/styles.css?{ versionKey }\" />\n\n\n<!-- webruntime-branding-shared stylesheets -->\n<link rel=\"stylesheet\" href=\"{ basePath }/assets/styles/salesforce-lightning-design-system.min.css?{ versionKey }\" />\n<link rel=\"stylesheet\" href=\"{ basePath }/assets/styles/dxp-site-spacing-styling-hooks.min.css?{ versionKey }\" />\n<link rel=\"stylesheet\" href=\"{ basePath }/assets/styles/dxp-styling-hooks.min.css?{ versionKey }\" />\n<link rel=\"stylesheet\" href=\"{ basePath }/assets/styles/dxp-slds-extensions.min.css?{ versionKey }\" />\n\n\n<!-- webruntime-branding-shared stylesheets -->\n\n<style>\n    :root{\n        --dxp-c-section-content-spacing-inline-end-mobile: 0rem !important;\n    \t--dxp-c-section-content-spacing-inline-start-mobile: 0rem !important;\n        --dxp-c-header-container-spacing-block-start-mobile: 0rem !important;\n        --dxp-c-header-container-spacing-inline-end-mobile: 0rem !important;\n        --dxp-c-header-container-spacing-block-end-mobile: 0rem !important;\n        --dxp-c-header-container-spacing-inline-start-mobile: 0rem !important;\n        /*--dxp-g-root: transparent;*/\n    }\n    \n    .header-content{\n        display: none;\n    }\n    \n    .community_layout-section_section-host {\n        background: transparent !important;\n    }\n    \n    html{\n        background-color: #f7f8ff;\n    \tbackground-blend-mode: soft-light;\n    }\n    \n    body{\n        background: transparent;\n    }\n    \n    .slds-tabs_scoped__item{\n        width: 49%;\n        text-align: center;\n    }\n    \n    .eqw .slds-button{\n        width: 100%;\n        text-align: center;\n        height: 35px;\n    }\n    \n    .header .fix_button-group-flexbox{\n        width: 100%;\n    }\n    \n</style>",
+    "isLockerServiceEnabled" : false,
+    "isRelaxedCSPLevel" : true,
+    "templateName" : "talon-template-byo"
+  }
+}

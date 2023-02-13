@@ -5,8 +5,8 @@
             "default": true
         }
     ],
-    "name": "tmp-app",
+    "name": "event-engagement-app",
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "55.0"
+    "sourceApiVersion": "57.0"
 }

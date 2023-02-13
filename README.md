@@ -11,6 +11,7 @@ This repo has the source code for the event engagement app used by Salesforce De
 ## Featues
 The event engagement app has 2 major modules
 ### Attendee Engagement Module
+- Optimized for mobile
 - Check in attendees
 - Collect Keynote feedback (Opening and Closing) 
 - Session/Booth Attendance and feedback: Helps track footfall at booths and sessions. Enter the session/booth code, or scan the QR code to mark attendance, and optionally give feedback.
@@ -56,7 +57,7 @@ Before deploying the app to your own production instance, I recommend installing
 
 1. Push the app to your scratch org:
     ```
-    sfdx force:source:push
+    sfdx force:source:push -f
     ```
 
 1. Assign the **EventApp** permission set to the default user:
