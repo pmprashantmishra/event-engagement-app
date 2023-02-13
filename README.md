@@ -25,7 +25,7 @@ The event engagement app has 2 major modules
 - Shows you a summary of responses from keynote feedback, session and booth feedback and survey.
 
 ## Try it in a scratch org
-Before deploying the app to your own production instance, I recommend installing it in a scratch org, to try the app and make the required changes.
+Before deploying the app to your own production instance, I recommend installing it in a scratch org, to try out the app and make any changes.
 
 1. If you haven't already done so, authorize your hub org and provide it with an alias (**myhuborg** in the command below):
 
@@ -33,7 +33,7 @@ Before deploying the app to your own production instance, I recommend installing
     sfdx auth:web:login -d -a myhuborg
     ```
 
-1. Clone the lwc-recipes repository:
+1. Clone the event-engagement-app repository:
 
     ```
     git clone https://github.com/adityanaag3/event-engagement-app
@@ -84,6 +84,6 @@ Before deploying the app to your own production instance, I recommend installing
 
 
 ## Deploy the QR code scanner to Netlify
-The QR code scanner is currently hosted on Netlify for faster speeds. The current Netlify instance in the app is a shared instance, and might run out of bandwidth. So it is recommended that you deploy the code to your own instance.
+The QR code scanner is currently hosted on Netlify for quick load times. The current Netlify instance used in the app is a shared instance, and might run out of bandwidth. So it is recommended that you deploy the scanner code to your own instance.
 
 Deploy the code in the `qr-code-scanner` folder to Netlify or GitHub pages, and update the endpoint in the `scanQRCode` component, in both the [HTML](https://github.com/adityanaag3/event-engagement-app/blob/main/force-app/main/default/lwc/scanQRCode/scanQRCode.html#L12) and [JS](https://github.com/adityanaag3/event-engagement-app/blob/main/force-app/main/default/lwc/scanQRCode/scanQRCode.js#L7) files.
