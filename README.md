@@ -55,24 +55,16 @@ Before deploying the app to your own production instance, I recommend installing
 1. Create a community with the **Build your own (LWR)** template, and name it `Event Engagement App`.
 
 1. Push the app to your scratch org:
-1. Push the app to your scratch org:
-
-    ```
-    sfdx force:source:push
-    ```
     ```
     sfdx force:source:push
     ```
 
 1. Assign the **EventApp** permission set to the default user:
-1. Assign the **EventApp** permission set to the default user:
 
     ```
     sfdx force:user:permset:assign -n EventApp
-    sfdx force:user:permset:assign -n EventApp
     ```
 
-1. Import sample data, for Events, Attendees and Sessions:
 1. Import sample data, for Events, Attendees and Sessions:
 
     ```
