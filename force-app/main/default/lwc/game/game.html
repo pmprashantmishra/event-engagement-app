@@ -1,0 +1,92 @@
+<template>
+    <template if:true={alreadyComplete}>
+        <div class="slds-text-align_center slds-p-top_medium">
+            <lightning-icon
+                icon-name="action:approval"
+                alternative-text="Approved"
+                title="Approved"
+            ></lightning-icon>
+            <div class="slds-m-top_x-large">
+                You have successfully played the game
+            </div>
+        </div>
+    </template>
+    <template if:false={alreadyComplete}>
+        <template if:true={gameStarted}>
+            <div class="flex-grid slds-m-top_large">
+                <div class="col">
+                    <div class="center">
+                        <div class="wordsearch noselect">
+                            <template if:true={gameObj.letterGroups}>
+                                <div class="game-grid" style={gridWidth}>
+                                    <template
+                                        for:each={gameBlocks}
+                                        for:item="block"
+                                    >
+                                        <div
+                                            class={block.class}
+                                            data-reference={block.id}
+                                            key={block.id}
+                                            onclick={handleLetterClick}
+                                            data-used={block.used}
+                                            data-selected={block.selected}
+                                            data-group={block.group}
+                                        >
+                                            {block.letter}
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+                <div class="col border">
+                    <div class="center center-column">
+                        <template if:false={gameOver}>
+                            <template if:true={timeUp}>
+                                <br />Time Up! <br />You found
+                                {numberOfWordsFound} words, and your score is
+                                {score}<br />
+                            </template>
+                            <template if:false={timeUp}>
+                                <br />{secondsLeft} seconds left, {totalWords}
+                                <button onclick={validateWord}>
+                                    Check Word
+                                </button>
+                                <div class="flex-grid flex-wrap words">
+                                    <template
+                                        for:each={foundWords}
+                                        for:item="word"
+                                    >
+                                        <div
+                                            key={word}
+                                            class="col word size_3-of-12"
+                                        >
+                                            {word}
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </template>
+                        <template if:true={gameOver}>
+                            <div class="text-align-center">
+                                <br />🎉 🎉 🎉 <br />
+                                You've found all the words in {duration}
+                                seconds. Your score is {score}
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template if:false={gameStarted}>
+            <div class="slds-m-top_xx-large slds-text-align_center">
+                <lightning-button
+                    label="Start Game"
+                    onclick={startGame}
+                    variant="brand"
+                ></lightning-button>
+            </div>
+        </template>
+    </template>
+</template>

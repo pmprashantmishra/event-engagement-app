@@ -1,0 +1,99 @@
+<template>
+    <div class="header slds-p-around_medium">
+        <template if:false={attendeeId}>
+            <div class="slds-text-align_center">
+                <img src={sfLogo} class="slds-m-bottom_xx-small logo" />
+            </div>
+        </template>
+
+        <template if:true={attendeeId}>
+            <div class="slds-text-body_regular white">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <img
+                            src={sfLogo}
+                            class="slds-m-bottom_xx-small logo-small"
+                        />
+                        <div class="slds-p-left_xx-small slds-m-top_x-small">
+                            Hi {attendeeName}
+                        </div>
+                    </div>
+                    <div
+                        class="slds-col slds-size_1-of-2 slds-text-align_right"
+                    >
+                        <canvas
+                            class="barcode slds-m-top_x-small"
+                            lwc:dom="manual"
+                        ></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-text-align_center menu-tabs slds-m-top_medium">
+                <lightning-button-group>
+                    <lightning-button
+                        label="What's On"
+                        class="eqw"
+                        variant={b1Variant}
+                        onclick={handleShowWhatsOn}
+                    ></lightning-button>
+                    <lightning-button
+                        label="Quest"
+                        class="eqw"
+                        variant={b2Variant}
+                        onclick={handleShowQuests}
+                    ></lightning-button>
+                </lightning-button-group>
+            </div>
+        </template>
+    </div>
+
+    <div class="slds-p-around_small">
+        <template if:false={isLoading}>
+            <template if:false={activeEventId}>
+                <div class="slds-text-align_center slds-text-heading_medium">
+                    Welcome! <br />
+                    <br />
+                    <span class="slds-text-heading_small"
+                        >Check-in starts at 8:00 AM.</span
+                    >
+
+                    <div class="slds-m-top_large">
+                        For more information about the event<br />please visit
+                        our
+                        <a href="#" target="_blank">website.</a>
+                    </div>
+                </div>
+            </template>
+            <template if:true={activeEventId}>
+                <template if:true={attendeeId}>
+                    <!-- MAIN PAGE -->
+                    <template if:true={showWhatsOn}>
+                        <c-event-whats-on
+                            event-id={activeEventId}
+                            attendee-id={attendeeId}
+                            team-name={attendeeTeamName}
+                            attendee-reg-id={attendeeRegId}
+                            pre-registered={preRegistered}
+                        ></c-event-whats-on>
+                    </template>
+                    <template if:true={showQuests}>
+                        <c-event-quest
+                            event-id={activeEventId}
+                            attendee-id={attendeeId}
+                        ></c-event-quest>
+                    </template>
+                </template>
+                <template if:false={attendeeId}>
+                    <!-- REGISTRATION PAGE -->
+                    <c-event-registration
+                        event-id={activeEventId}
+                        onregistrationcomplete={handleRegComplete}
+                    ></c-event-registration>
+                </template>
+            </template>
+        </template>
+        <template if:true={isLoading}>
+            <c-spinner></c-spinner>
+        </template>
+    </div>
+</template>

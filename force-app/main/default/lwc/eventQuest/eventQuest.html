@@ -1,0 +1,324 @@
+<template>
+    <template if:true={showSpinner}>
+        <c-spinner></c-spinner>
+    </template>
+
+    <div
+        class="slds-text-align_center slds-text-heading_small slds-m-top_medium"
+    >
+        Complete the quest and win exciting prizes.
+    </div>
+
+    <div class="slds-m-top_medium">
+        <div class="slds-tile slds-media slds-p-around_small tile white">
+            <div class="slds-media__figure">
+                <template if:true={boothVisitComplete}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="action:approval"
+                        size="x-small"
+                    ></lightning-icon>
+                </template>
+                <template if:false={boothVisitComplete}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="utility:routing_offline"
+                    ></lightning-icon>
+                </template>
+            </div>
+            <div class="slds-media__body">
+                <h3 class="slds-text-heading_small bold middle">
+                    Visit a booth
+                </h3>
+            </div>
+        </div>
+        <div class="slds-p-around_small semi-white">
+            During the event, visit at least one booth. Keep an eye on the
+            <b>What's On</b> tab to enter the booth code or scan QR code shared
+            at the booth.
+        </div>
+    </div>
+
+    <div class="slds-m-top_medium">
+        <div class="slds-tile slds-media slds-p-around_small tile white">
+            <div class="slds-media__figure">
+                <lightning-progress-ring
+                    value={numSessionProgress}
+                    slot="media"
+                    size="large"
+                ></lightning-progress-ring>
+            </div>
+            <div class="slds-media__body">
+                <h3 class="slds-text-heading_small bold middle">
+                    Attend 3 sessions
+                </h3>
+            </div>
+        </div>
+        <div class="slds-p-around_small semi-white">
+            Attend at least 3 sessions by our awesome speakers. Keep an eye on
+            the
+            <b>What's On</b> tab to enter the session code or scan QR code
+            shared towards the end of a session.
+        </div>
+    </div>
+
+    <div class="slds-m-top_medium">
+        <div class="slds-tile slds-media slds-p-around_small tile white">
+            <div class="slds-media__figure">
+                <lightning-progress-ring
+                    value={numFeedbackProgress}
+                    slot="media"
+                    size="large"
+                ></lightning-progress-ring>
+            </div>
+            <div class="slds-media__body">
+                <h3 class="slds-text-heading_small bold middle">
+                    Give feedback for 3 sessions
+                </h3>
+            </div>
+        </div>
+        <div class="slds-p-around_small semi-white">
+            Make sure you share your valuable feedback for at least 3 sessions.
+            The feedback form will be shown in the <b>What's On</b> tab once you
+            mark your attendance.
+        </div>
+    </div>
+
+    <div class="slds-m-top_medium">
+        <div class="slds-tile slds-media slds-p-around_small tile white">
+            <div class="slds-media__figure">
+                <lightning-progress-ring
+                    value={numPplProgress}
+                    slot="media"
+                    size="large"
+                ></lightning-progress-ring>
+            </div>
+            <div class="slds-media__body">
+                <h3 class="slds-text-heading_small bold middle">
+                    Meet 10 new people
+                </h3>
+            </div>
+        </div>
+        <div class="slds-p-around_small semi-white">
+            <div class="slds-m-bottom_small">
+                Meet with 10 new people. You met {numPplMet} people so far.
+                <br />This includes event volunteers and speakers. After you
+                meet, scan their QR code.
+            </div>
+            <lightning-button
+                label="Scan QR code"
+                variant="brand"
+                onclick={scanQRCode}
+            ></lightning-button>
+        </div>
+    </div>
+
+    <div class="slds-m-top_medium">
+        <div class="slds-tile slds-media slds-p-around_small tile white">
+            <div class="slds-media__figure">
+                <template if:true={metVolunteer}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="action:approval"
+                        size="x-small"
+                    ></lightning-icon>
+                </template>
+                <template if:false={metVolunteer}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="utility:routing_offline"
+                    ></lightning-icon>
+                </template>
+            </div>
+            <div class="slds-media__body">
+                <h3 class="slds-text-heading_small bold middle">
+                    Say thank you to an event volunteer
+                </h3>
+            </div>
+        </div>
+        <div class="slds-p-around_small semi-white">
+            <div class="slds-m-bottom_small">
+                Meet an event volunteer (in a green T-Shirt), and thank them for
+                their work to make this event happen. Make sure you scan their
+                QR Code to complete this task.
+            </div>
+            <lightning-button
+                label="Scan QR code"
+                variant="brand"
+                onclick={scanQRCode}
+            ></lightning-button>
+        </div>
+    </div>
+
+    <div class="slds-m-top_medium">
+        <div class="slds-tile slds-media slds-p-around_small tile white">
+            <div class="slds-media__figure">
+                <template if:true={metSpeaker}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="action:approval"
+                        size="x-small"
+                    ></lightning-icon>
+                </template>
+                <template if:false={metSpeaker}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="utility:routing_offline"
+                    ></lightning-icon>
+                </template>
+            </div>
+            <div class="slds-media__body">
+                <h3 class="slds-text-heading_small bold middle">
+                    Meet a speaker
+                </h3>
+            </div>
+        </div>
+        <div class="slds-p-around_small semi-white">
+            <div class="slds-m-bottom_small">
+                Meet any of the session or keynote speakers. Make sure you scan
+                their QR Code to complete this task.
+            </div>
+            <lightning-button
+                label="Scan QR code"
+                variant="brand"
+                onclick={scanQRCode}
+            ></lightning-button>
+        </div>
+    </div>
+
+    <div class="slds-m-top_medium">
+        <div class="slds-tile slds-media slds-p-around_small tile white">
+            <div class="slds-media__figure">
+                <template if:true={tweeted}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="action:approval"
+                        size="x-small"
+                    ></lightning-icon>
+                </template>
+                <template if:false={tweeted}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="utility:routing_offline"
+                    ></lightning-icon>
+                </template>
+            </div>
+            <div class="slds-media__body">
+                <h3 class="slds-text-heading_small bold middle">
+                    Tweet photos using {eventHashTag}
+                </h3>
+            </div>
+        </div>
+        <div class="slds-p-around_small semi-white">
+            Tweet a photo with a creative caption using the hashtag
+            {eventHashTag}. Don't forget the hashtag. We'll monitor tweets and
+            update this tile at regular intervals.
+            <div class="slds-m-top_small slds-p-top_small dotted-border">
+                Your Twitter Handle: <br />
+                <template if:true={updateMode}>
+                    <lightning-input
+                        value={twitterHandle}
+                        placeholder="Without the @"
+                        onchange={handleTwitterChange}
+                        variant="label-hidden"
+                        class="slds-m-top_small twitter_handle"
+                        required="true"
+                    ></lightning-input>
+                    <lightning-button
+                        variant="brand"
+                        label="Save Changes"
+                        onclick={saveTwitterHandle}
+                    ></lightning-button>
+                    <br /><span class="slds-error"
+                        >(NOTE: You can update your Twitter handle only
+                        once.)</span
+                    >
+                </template>
+                <template if:false={updateMode}>
+                    {twitterHandle}
+                    <template if:false={updatedOnce}>
+                        <br /><lightning-button
+                            variant="base"
+                            label="Update Handle"
+                            onclick={handleUpdateClick}
+                        ></lightning-button>
+                        <br /><span class="slds-error"
+                            >(NOTE: You can update your Twitter handle only
+                            once.)</span
+                        >
+                    </template>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <div class="slds-m-top_medium">
+        <div class="slds-tile slds-media slds-p-around_small tile white">
+            <div class="slds-media__figure">
+                <template if:true={playedGame}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="action:approval"
+                        size="x-small"
+                    ></lightning-icon>
+                </template>
+                <template if:false={playedGame}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="utility:routing_offline"
+                    ></lightning-icon>
+                </template>
+            </div>
+            <div class="slds-media__body">
+                <h3 class="slds-text-heading_small bold middle">Play a game</h3>
+            </div>
+        </div>
+        <div class="slds-p-around_small semi-white">
+            Play atleast one game during the event. Keep an eye on the
+            <b>What's On</b> tab.
+        </div>
+    </div>
+
+    <div class="slds-m-top_medium">
+        <div class="slds-tile slds-media slds-p-around_small tile white">
+            <div class="slds-media__figure">
+                <template if:true={eventFeedbackComplete}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="action:approval"
+                        size="x-small"
+                    ></lightning-icon>
+                </template>
+                <template if:false={eventFeedbackComplete}>
+                    <lightning-icon
+                        slot="media"
+                        icon-name="utility:routing_offline"
+                    ></lightning-icon>
+                </template>
+            </div>
+            <div class="slds-media__body">
+                <h3 class="slds-text-heading_small bold middle">
+                    Give event feedback
+                </h3>
+            </div>
+        </div>
+        <div class="slds-p-around_small semi-white">
+            Make sure you share your valuable feedback after the event. Keep an
+            eye on the <b>What's On</b> tab.
+        </div>
+    </div>
+
+    <template if:true={showScanner}>
+        <div class="fixed">
+            <div class="slds-text-align_right slds-p-around_x-small">
+                <lightning-button
+                    label="X"
+                    onclick={closeScanner}
+                ></lightning-button>
+            </div>
+            <c-scan-q-r-code
+                onscancomplete={handleQRResponse}
+            ></c-scan-q-r-code>
+        </div>
+    </template>
+</template>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Vote</fullName>
+                <default>false</default>
+                <label>Vote</label>
+            </value>
+            <value>
+                <fullName>Feedback</fullName>
+                <default>false</default>
+                <label>Feedback</label>
+            </value>
+            <value>
+                <fullName>Interaction</fullName>
+                <default>false</default>
+                <label>Interaction</label>
+            </value>
+            <value>
+                <fullName>Game 1</fullName>
+                <default>false</default>
+                <label>Game 1</label>
+            </value>
+            <value>
+                <fullName>Game 2</fullName>
+                <default>false</default>
+                <label>Game 2</label>
+            </value>
+            <value>
+                <fullName>Tweet</fullName>
+                <default>false</default>
+                <label>Tweet</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

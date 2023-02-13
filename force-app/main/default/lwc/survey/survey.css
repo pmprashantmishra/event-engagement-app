@@ -1,0 +1,18 @@
+.slds-has-error .slds-form-element__help {
+    display: block !important;
+}
+
+.slds-form-element__label {
+    font-weight: 700;
+}
+
+.box {
+    background: #e5e02f;
+    color: black;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.otherOption {
+    display: none;
+}

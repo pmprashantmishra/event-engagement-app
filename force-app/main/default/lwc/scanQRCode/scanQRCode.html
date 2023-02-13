@@ -1,0 +1,16 @@
+<template lwc:render-mode="light">
+    <div class="slds-p-around_small">
+        Ensure you see a square scanner box. The blox glows green when a scan is
+        successful.
+    </div>
+    <template if:false={iframeLoaded}>
+        <div class="slds-m-top_large slds-text-align_center">
+            Please wait while the camera loads...
+        </div>
+    </template>
+    <iframe
+        src="https://venerable-strudel-b9e4e9.netlify.app/"
+        allow="camera; microphone;"
+        onload={handleLoad}
+    ></iframe>
+</template>

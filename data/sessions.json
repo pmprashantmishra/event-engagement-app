@@ -1,0 +1,40 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Session_Booth__c",
+                "referenceId": "sessionRef1"
+            },
+            "Name": "Session 1",
+            "Type__c": "Session",
+            "Trailblazer_Event__c": "@eventRef1"
+        },
+        {
+            "attributes": {
+                "type": "Session_Booth__c",
+                "referenceId": "sessionRef2"
+            },
+            "Name": "Session 2",
+            "Type__c": "Session",
+            "Trailblazer_Event__c": "@eventRef1"
+        },
+        {
+            "attributes": {
+                "type": "Session_Booth__c",
+                "referenceId": "sessionRef3"
+            },
+            "Name": "Booth 1",
+            "Type__c": "Booth",
+            "Trailblazer_Event__c": "@eventRef1"
+        },
+        {
+            "attributes": {
+                "type": "Session_Booth__c",
+                "referenceId": "sessionRef4"
+            },
+            "Name": "Booth 2",
+            "Type__c": "Booth",
+            "Trailblazer_Event__c": "@eventRef1"
+        }
+    ]
+}

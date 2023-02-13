@@ -1,0 +1,72 @@
+<template>
+    <template if:true={showSpinner}>
+        <c-spinner></c-spinner>
+    </template>
+    <template if:true={isStep1}>
+        <div
+            class="slds-text-align_center slds-p-top_medium slds-text-heading_medium"
+        >
+            Let's check you in.
+        </div>
+        <div class="slds-m-top_medium slds-m-bottom_medium">
+            <lightning-input
+                label="Enter your email address"
+                required="true"
+                onchange={handleEmailChange}
+                class="email"
+                type="email"
+            ></lightning-input>
+        </div>
+        <div class="slds-m-bottom_medium slds-text-align_center">
+            <lightning-button
+                label="Next"
+                variant="brand"
+                onclick={moveToStep2}
+            ></lightning-button>
+        </div>
+    </template>
+    <template if:true={isStep2}>
+        <div
+            class="slds-text-align_center slds-p-top_medium slds-text-heading_medium"
+        >
+            Get on Twitter
+        </div>
+        <div class="slds-m-top_medium slds-m-bottom_medium">
+            <div class="slds-m-bottom_medium">
+                Twitter is needed for today's activities. Please create a
+                Twitter account if you don't have one already. You can do this
+                later as well.
+            </div>
+            <lightning-input
+                label="Enter your Twitter Handle (without the @)"
+                required="true"
+                onchange={handleTwitterChange}
+                class="twitter"
+            ></lightning-input>
+        </div>
+        <div class="slds-m-bottom_medium slds-text-align_center">
+            <lightning-button
+                label="Next"
+                variant="brand"
+                onclick={moveToStep3}
+            ></lightning-button>
+            <div class="slds-m-top_medium">
+                <lightning-button
+                    label="I will do this later"
+                    variant="neutral"
+                    onclick={skipToStep3}
+                ></lightning-button>
+            </div>
+        </div>
+    </template>
+    <template if:true={isStep3}>
+        <div class="slds-text-align_center slds-p-top_medium">
+            <lightning-icon
+                icon-name="action:approval"
+                alternative-text="Approved"
+                title="Approved"
+            ></lightning-icon>
+            <div class="slds-m-top_medium">Check in complete</div>
+        </div>
+    </template>
+</template>

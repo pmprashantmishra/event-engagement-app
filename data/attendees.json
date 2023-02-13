@@ -1,0 +1,22 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Event_Attendees__c",
+                "referenceId": "attendeeRef1"
+            },
+            "Email_Address__c": "a1@example.com",
+            "Name": "Attendee 1",
+            "Trailblazer_Event__c": "@eventRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event_Attendees__c",
+                "referenceId": "attendeeRef2"
+            },
+            "Email_Address__c": "a2@example.com",
+            "Name": "Attendee 2",
+            "Trailblazer_Event__c": "@eventRef1"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Trailblazer_Event__c",
+                "referenceId": "eventRef1"
+            },
+            "Active__c": true,
+            "Event_Phase__c": "Check In",
+            "Name": "Demo Event",
+            "Start_Date__c": "2023-02-14T06:30:00.000+0000"
+        }
+    ]
+}

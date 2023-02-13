@@ -1,0 +1,13 @@
+{
+    "orgName": "atopalli company",
+    "edition": "Enterprise",
+    "features": ["EnableSetPasswordInApi", "Communities"],
+    "settings": {
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
+        },
+        "mobileSettings": {
+            "enableS1EncryptedStoragePref2": false
+        }
+    }
+}

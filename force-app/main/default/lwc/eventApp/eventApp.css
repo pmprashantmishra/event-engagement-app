@@ -1,0 +1,68 @@
+.header {
+    background: #6b2f90; /** Use your event's theme color **/
+}
+
+.white {
+    color: white;
+}
+
+.slds-tabs_scoped__content {
+    background-color: transparent !important;
+    border: none;
+    padding: 0;
+}
+
+.fix_button-group-flexbox {
+    width: 100%;
+}
+
+.customtabs {
+    --slds-c-tabs-list-color-border: transparent;
+    --slds-c-tabs-item-spacing-inline-end: 0;
+    --slds-c-tabs-item-spacing-inline-start: 0;
+    --slds-c-tabs-panel-spacing-block-end: 0;
+    --slds-c-tabs-panel-spacing-block-start: 0;
+}
+
+.slds-tabs_scoped__item {
+    width: 50%;
+}
+
+.slds-tabs_scoped__overflow-button {
+    display: none;
+}
+
+.slds-button-group {
+    width: 100%;
+}
+
+.eqw {
+    width: 50%;
+}
+
+.slds-button {
+    width: 100%;
+}
+
+.menu-tabs {
+    background: white;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.logo {
+    max-height: 100px;
+}
+
+.logo-small {
+    max-height: 75px;
+}
+
+.full-img {
+    width: 100%;
+}
+
+.barcode {
+    height: 100px;
+    width: 100px;
+}

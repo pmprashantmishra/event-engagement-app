@@ -1,0 +1,38 @@
+.white {
+    background-color: white;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.tile {
+    border-bottom: 1px solid #ddd;
+}
+
+.middle {
+    height: 32px;
+    vertical-align: middle;
+    align-content: center;
+    display: table-cell;
+}
+
+.semi-white {
+    background-color: #ffffffcc;
+}
+
+.dotted-border {
+    border-top: 1px dashed #d0d0d0;
+}
+
+.fixed {
+    background: white;
+    border-radius: 10px 10px 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 1px solid gray;
+    border-bottom: 0;
+    z-index: 9;
+}

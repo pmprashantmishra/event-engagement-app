@@ -1,0 +1,33 @@
+.teamNameBanner {
+    background: #1e40a1;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+.semi-white {
+    background-color: #ffffff8f;
+}
+
+.attendedSession {
+    background: #6b2f90;
+    color: white;
+    padding: 5px;
+}
+
+.fixed {
+    background: white;
+    border-radius: 10px 10px 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: 1px solid gray;
+    border-bottom: 0;
+    z-index: 9;
+}
+
+.img {
+    margin: 0 auto;
+}

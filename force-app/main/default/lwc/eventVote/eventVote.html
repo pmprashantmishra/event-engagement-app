@@ -1,0 +1,67 @@
+<template>
+    <div
+        class="slds-text-align_center slds-p-top_medium slds-text-heading_small slds-m-bottom_medium"
+    >
+        {voteTitle}
+    </div>
+    <template if:true={alreadyVoted}>
+        <div class="slds-text-align_center slds-p-top_medium">
+            <lightning-icon
+                icon-name="action:approval"
+                alternative-text="Approved"
+                title="Approved"
+            ></lightning-icon>
+            <div class="slds-m-top_medium slds-m-bottom_medium">
+                You have successfully submitted your response.
+            </div>
+            <template if:true={embedded}>
+                <lightning-button
+                    label="Submit for another booth/session"
+                    variant="brand"
+                    onclick={cancelFeedback}
+                ></lightning-button>
+            </template>
+        </div>
+    </template>
+    <template if:false={alreadyVoted}>
+        <template if:true={voteOptions}>
+            <template for:each={voteOptions} for:item="voteOption">
+                <lightning-radio-group
+                    key={voteOption.title}
+                    name={voteOption.name}
+                    label={voteOption.title}
+                    options={voteOption.options}
+                    type="button"
+                    class="slds-m-bottom_large"
+                    required="true"
+                >
+                </lightning-radio-group>
+            </template>
+        </template>
+        <template if:true={isFeedback}>
+            <lightning-input
+                type="text"
+                label={feedbackText}
+                class="slds-m-top_small slds-m-bottom_small"
+                maxlength="150"
+                onchange={captureFeedbackNotes}
+            ></lightning-input>
+        </template>
+        <div class="slds-m-bottom_medium slds-text-align_center">
+            <lightning-button
+                label="Submit"
+                variant="brand"
+                onclick={submitVote}
+            ></lightning-button>
+            <template if:true={embedded}>
+                <div class="slds-m-top_medium">
+                    <lightning-button
+                        label="I don't want to give feedback"
+                        variant="neutral"
+                        onclick={cancelFeedback}
+                    ></lightning-button>
+                </div>
+            </template>
+        </div>
+    </template>
+</template>

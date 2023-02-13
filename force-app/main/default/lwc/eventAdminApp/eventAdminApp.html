@@ -1,0 +1,150 @@
+<template>
+    <lightning-card title="Statistics">
+        <div class="slds-p-around_medium">
+            <template if:true={isFeedback}>
+                <lightning-radio-group
+                    name="radioGroup"
+                    label="Select Feedback Option"
+                    options={feedbackOptions}
+                    type="radio"
+                    onchange={handleFeedbackOptionChange}
+                ></lightning-radio-group>
+
+                <template if:true={showSessionsList}>
+                    <lightning-radio-group
+                        name="radioSessionGroup"
+                        label="Select Session or Booth"
+                        options={sessions}
+                        type="radio"
+                        onchange={handleSessionOptionChange}
+                    ></lightning-radio-group>
+                </template>
+                <div class="slds-m-top_small">
+                    <lightning-button
+                        label="Get Results"
+                        onclick={getFeedbackCounts}
+                        variant="brand"
+                    ></lightning-button>
+                </div>
+
+                <div class="slds-m-top_small">
+                    <template if:true={showFeedbackResults}>
+                        <template if:true={feedbackResult}>
+                            <div class="slds-text-heading_small">
+                                {feedbackResult.score} ({feedbackResult.count}
+                                votes)
+                            </div>
+                            <ul class="slds-list_dotted">
+                                <template
+                                    for:each={feedbackResult.comments}
+                                    for:item="comment"
+                                >
+                                    <li key={comment.id}>{comment.feedback}</li>
+                                </template>
+                            </ul>
+                        </template>
+                    </template>
+
+                    <template if:true={showSurveyResults}>
+                        <template if:true={feedbackResult}>
+                            <div class="slds-text-heading_small">
+                                {feedbackResult.count} responses
+                            </div>
+                            <div
+                                class="slds-text-heading_small slds-m-top_small"
+                            >
+                                Updates
+                            </div>
+                            <ul class="slds-list_dotted">
+                                <template
+                                    for:each={feedbackResult.updatesCounts}
+                                    for:item="counts"
+                                >
+                                    <li key={counts.name}>
+                                        {counts.name} - {counts.count}
+                                    </li>
+                                </template>
+                            </ul>
+
+                            <div
+                                class="slds-text-heading_small slds-m-top_small"
+                            >
+                                Timeframe
+                            </div>
+                            <ul class="slds-list_dotted">
+                                <template
+                                    for:each={feedbackResult.timeframeCounts}
+                                    for:item="counts"
+                                >
+                                    <li key={counts.name}>
+                                        {counts.name} - {counts.count}
+                                    </li>
+                                </template>
+                            </ul>
+
+                            <div
+                                class="slds-text-heading_small slds-m-top_small"
+                            >
+                                Place
+                            </div>
+                            <ul class="slds-list_dotted">
+                                <template
+                                    for:each={feedbackResult.preferedPlaceCounts}
+                                    for:item="counts"
+                                >
+                                    <li key={counts.name}>
+                                        {counts.name} - {counts.count}
+                                    </li>
+                                </template>
+                            </ul>
+
+                            <div
+                                class="slds-text-heading_small slds-m-top_small"
+                            >
+                                Length
+                            </div>
+                            <ul class="slds-list_dotted">
+                                <template
+                                    for:each={feedbackResult.preferedLengthCounts}
+                                    for:item="counts"
+                                >
+                                    <li key={counts.name}>
+                                        {counts.name} - {counts.count}
+                                    </li>
+                                </template>
+                            </ul>
+
+                            <div
+                                class="slds-text-heading_small slds-m-top_small"
+                            >
+                                Other Values
+                            </div>
+                            <ul class="slds-list_dotted">
+                                <template
+                                    for:each={feedbackResult.otherValues}
+                                    for:item="comment"
+                                >
+                                    <li key={comment.id}>{comment.feedback}</li>
+                                </template>
+                            </ul>
+
+                            <div
+                                class="slds-text-heading_small slds-m-top_small"
+                            >
+                                Comments
+                            </div>
+                            <ul class="slds-list_dotted">
+                                <template
+                                    for:each={feedbackResult.comments}
+                                    for:item="comment"
+                                >
+                                    <li key={comment.id}>{comment.feedback}</li>
+                                </template>
+                            </ul>
+                        </template>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

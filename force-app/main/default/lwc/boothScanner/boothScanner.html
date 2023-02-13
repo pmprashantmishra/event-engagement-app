@@ -1,0 +1,99 @@
+<template>
+    <div class="header">
+        <div class="slds-text-align_center">
+            <img
+                src={sfLogo}
+                class="slds-m-bottom_small slds-m-top_small logo"
+            />
+            <template if:true={boothSessionId}>
+                <div class="slds-text-heading_small white slds-p-bottom_medium">
+                    {boothSessionName}
+                </div>
+            </template>
+        </div>
+    </div>
+    <div class="slds-m-top_x-small">
+        <template if:true={boothSessionId}>
+            <div class="slds-m-top_medium">
+                <div
+                    class="slds-text-heading_small slds-text-align_center slds-m-bottom_medium"
+                >
+                    Last 10 Scanned attendees
+                </div>
+                <ul class="slds-has-dividers_bottom-space">
+                    <template if:true={records.data}>
+                        <template for:each={records.data} for:item="record">
+                            <li class="slds-item" key={record.Id}>
+                                {record.Event_Attendee__r.Name}
+                            </li>
+                        </template>
+                    </template>
+                </ul>
+                <template if:false={showScanner}>
+                    <div class="slds-m-top_medium slds-text-align_center">
+                        <lightning-button
+                            label="Scan QR Code"
+                            onclick={scanQRCode}
+                            variant="brand"
+                        ></lightning-button>
+                    </div>
+                </template>
+                <div
+                    class="slds-m-top_medium slds-p-bottom_medium slds-text-align_center"
+                >
+                    <lightning-button
+                        variant="neutral"
+                        label="Logout"
+                        onclick={handleLogout}
+                    ></lightning-button>
+                </div>
+                <template if:true={showScanner}>
+                    <div class="fixed">
+                        <div
+                            class="slds-text-align_right slds-p-around_x-small"
+                        >
+                            <lightning-button
+                                label="X"
+                                onclick={closeScanner}
+                            ></lightning-button>
+                        </div>
+                        <c-scan-q-r-code
+                            onscancomplete={handleQRResponse}
+                        ></c-scan-q-r-code>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:false={boothSessionId}>
+            <div
+                class="slds-text-align_center slds-p-top_medium slds-text-heading_medium"
+            >
+                Log in
+            </div>
+            <div class="slds-m-top_medium slds-m-bottom_medium">
+                <lightning-input
+                    label="Enter Session or Booth Code"
+                    required="true"
+                    class="sessCode"
+                    type="text"
+                ></lightning-input>
+                <lightning-input
+                    label="Enter OTP (Reach out to event staff to get one)"
+                    required="true"
+                    class="otp"
+                    type="text"
+                ></lightning-input>
+            </div>
+            <div class="slds-m-bottom_medium slds-text-align_center">
+                <lightning-button
+                    label="Login"
+                    variant="brand"
+                    onclick={handleLogin}
+                ></lightning-button>
+            </div>
+        </template>
+    </div>
+    <template if:true={isLoading}>
+        <c-spinner></c-spinner>
+    </template>
+</template>

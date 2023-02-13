@@ -1,0 +1,20 @@
+[
+    {
+        "sobject": "Trailblazer_Event__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": ["event.json"]
+    },
+    {
+        "sobject": "Event_Attendees__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": ["attendees.json"]
+    },
+    {
+        "sobject": "Session_Booth__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": ["sessions.json"]
+    }
+]

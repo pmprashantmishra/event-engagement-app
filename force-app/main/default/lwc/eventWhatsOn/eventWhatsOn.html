@@ -1,0 +1,121 @@
+<template>
+    <template if:true={showSpinner}>
+        <c-spinner></c-spinner>
+    </template>
+    <template if:true={showCheckIn}>
+        <div class="slds-text-align_center slds-p-top_x-large">
+            <lightning-icon
+                icon-name="action:approval"
+                alternative-text="Approved"
+                title="Approved"
+            ></lightning-icon>
+            <div class="slds-m-top_medium">Check in complete</div>
+        </div>
+    </template>
+    <template if:true={showKeynote}>
+        <div class="slds-text-align_center slds-p-top_medium">
+            <lightning-icon
+                icon-name="action:announcement"
+                alternative-text="Keynote"
+                title="Keynote"
+            ></lightning-icon>
+            <div class="slds-m-top_medium">
+                Keynote in progress. Make sure you cheer.
+            </div>
+        </div>
+    </template>
+    <template if:true={showVote}>
+        <c-event-vote
+            vote-options={voteOptions}
+            vote-type={voteType}
+            vote-title={voteTitle}
+            onvote={handleVote}
+            already-voted={alreadyVoted}
+            is-feedback={isFeedback}
+            feedback-text={feedbackText}
+        ></c-event-vote>
+    </template>
+    <template if:true={showSurvey}>
+        <c-survey
+            vote-options={voteOptions}
+            vote-type={voteType}
+            vote-title={voteTitle}
+            onvote={handleVote}
+            already-voted={alreadyVoted}
+            feedback-text={feedbackText}
+        ></c-survey>
+    </template>
+    <template if:true={showGame1}>
+        <c-game attendee-id={attendeeId} event-id={eventId}></c-game>
+    </template>
+    <template if:true={showGame2}>
+        <c-wordle attendee-id={attendeeId} event-id={eventId}></c-wordle>
+    </template>
+    <template if:true={showBoothsSessions}>
+        <div class="slds-m-top_medium">
+            Visit booths or sessions at the event.
+        </div>
+        <div class="slds-m-top_large">
+            <div
+                class="slds-text-heading_small slds-text-align_center attendedSession"
+            >
+                Mark attendance and give feedback
+            </div>
+            <template if:true={showSessionAttendance}>
+                <div class="slds-m-top_small">
+                    Enter the code or scan the QR code shared during the session
+                    or at the booth to mark your attendance and optionally give
+                    feedback
+                    <div class="slds-m-top_medium">
+                        <lightning-button
+                            label="Scan QR code"
+                            variant="neutral"
+                            onclick={scanQRCode}
+                        ></lightning-button>
+                    </div>
+                    <div class="slds-m-top_medium slds-m-bottom_medium">
+                        <b>OR</b>
+                    </div>
+                    <lightning-input
+                        onchange={handleSessionCodeChange}
+                        variant="label-hidden"
+                        placeholder="Enter session or booth code"
+                        class="slds-m-top_small slds-m-bottom_small sessionCode"
+                        required="true"
+                    ></lightning-input>
+                    <lightning-button
+                        variant="brand"
+                        label="Submit"
+                        onclick={saveSessionAttendance}
+                    ></lightning-button>
+                </div>
+            </template>
+            <template if:true={showSessionFeedback}>
+                <c-event-vote
+                    vote-options={voteOptions}
+                    vote-type={voteType}
+                    vote-title={voteTitle}
+                    onvote={handleVote}
+                    onclosefeedback={closefeedback}
+                    already-voted={alreadyVoted}
+                    is-feedback={isFeedback}
+                    feedback-text={feedbackText}
+                    embedded={embedded}
+                ></c-event-vote>
+            </template>
+        </div>
+    </template>
+    <template if:true={showScanner}>
+        <div class="fixed">
+            <div class="slds-text-align_right slds-p-around_x-small">
+                <lightning-button
+                    label="X"
+                    onclick={closeScanner}
+                ></lightning-button>
+            </div>
+            <c-scan-q-r-code
+                onscancomplete={handleQRResponse}
+            ></c-scan-q-r-code>
+        </div>
+    </template>
+</template>
