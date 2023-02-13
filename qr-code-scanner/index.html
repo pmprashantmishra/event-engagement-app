@@ -1,0 +1,29 @@
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<style>
+    #reader{
+        width: 100%;
+    }
+</style>
+
+<div id="reader"></div>
+
+
+<script>
+    var lastText;
+    function onScanSuccess(decodedText, decodedResult) {
+        if(lastText !== decodedText){
+            console.log('decoded text' + decodedText);
+            lastText = decodedText;
+            window.parent.postMessage(decodedText, '*');
+        }
+    }
+      
+    function onScanFailure(error) {
+        console.warn(`Code scan error = ${error}`);
+    }
+
+    const html5QrCode = new Html5Qrcode("reader");
+    const config = { fps: 30, qrbox: { width: 200, height: 200 } };
+
+    html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
+</script>
