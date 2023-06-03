@@ -1,0 +1,30 @@
+<template>
+    <lightning-input type="text" label="Quiz Name" onchange={handleQuizNameChange}></lightning-input>
+    <lightning-combobox 
+        name="Event"
+        label="Event Name"
+        value={eventValues}
+        placeholder="Select Event"
+        options={eventOptions}
+        onchange={handleEventChange}>
+    </lightning-combobox>
+
+    <!-- question area -->
+    <div class="question-area">
+        <template for:each={questionWithOptionsList} for:item="question" for:index="index">
+            <div key={question}>
+                <!-- Question -->
+                <lightning-input type="text" label="Question Text" onchange={handleQuestionChange} data-index={index}></lightning-input>
+                <!-- Options -->
+                <lightning-input type="text" label="Question 1" onchange={handleOption1Change} data-index={index}></lightning-input>
+                <lightning-input type="text" label="Question 2" onchange={handleOption2Change} data-index={index}></lightning-input>
+                <lightning-input type="text" label="Question 3" onchange={handleOption3Change} data-index={index}></lightning-input>
+                <lightning-input type="text" label="Question 4" onchange={handleOption4Change} data-index={index}></lightning-input>
+                <!-- currect Answer -->
+                <lightning-input type="text" label="Correct Answer" onchange={handleAnswerChange} data-index={index}></lightning-input>
+                <!-- Marks -->
+                <lightning-input type="text" label="Marks" onchange={handleMarksChange} data-index={index}></lightning-input>
+            </div>
+        </template>
+    </div>
+</template>
