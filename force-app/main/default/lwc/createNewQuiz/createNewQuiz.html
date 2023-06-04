@@ -12,7 +12,7 @@
     <!-- question area -->
     <div class="question-area">
         <template for:each={questionWithOptionsList} for:item="question" for:index="index">
-            <div key={question}>
+            <div key={question} class="slds-m-top_large">
                 <!-- Question -->
                 <lightning-input type="text" label="Question Text" onchange={handleQuestionChange} data-index={index}></lightning-input>
                 <!-- Options -->
@@ -24,7 +24,10 @@
                 <lightning-input type="text" label="Correct Answer" onchange={handleAnswerChange} data-index={index}></lightning-input>
                 <!-- Marks -->
                 <lightning-input type="text" label="Marks" onchange={handleMarksChange} data-index={index}></lightning-input>
+
+                <lightning-button variant="brand" label="Add" title="Add Question" onclick={handleAddRowClick}></lightning-button>
             </div>
         </template>
     </div>
+    <lightning-button variant="brand" label="Create" title="Create Quiz" onclick={handleCreateQuizClick}></lightning-button>
 </template>

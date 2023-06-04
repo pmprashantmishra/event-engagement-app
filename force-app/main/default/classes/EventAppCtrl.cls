@@ -671,4 +671,19 @@ public without sharing class EventAppCtrl {
         @AuraEnabled
         public String value;
     }
+
+    @AuraEnabled
+    public static Id createQuiz(Id eventId, String quizName, String quizQuestions){
+        try {
+            Quiz__c quiz = new Quiz__c(
+                Name = quizName,
+                Trailblazer_Event__c = eventId,
+                Questions__c = quizQuestions
+            );
+            insert quiz;
+            return quiz.Id;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
 }
