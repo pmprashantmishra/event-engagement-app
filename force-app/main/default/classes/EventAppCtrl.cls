@@ -673,12 +673,14 @@ public without sharing class EventAppCtrl {
     }
 
     @AuraEnabled
-    public static Id createQuiz(Id eventId, String quizName, String quizQuestions){
+    public static Id createQuiz(Id eventId, String quizName, String quizQuestions, Integer quizTime, Integer quizOrder){
         try {
             Quiz__c quiz = new Quiz__c(
                 Name = quizName,
                 Trailblazer_Event__c = eventId,
-                Questions__c = quizQuestions
+                Questions__c = quizQuestions,
+                Quiz_Time__c = quizTime,
+                Sort_Order__c = quizOrder
             );
             insert quiz;
             return quiz.Id;
