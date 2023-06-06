@@ -1,4 +1,5 @@
 import { LightningElement } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getEventNamesWithIds from '@salesforce/apex/EventAppCtrl.getEventNamesWithIds';
 import createQuiz from '@salesforce/apex/EventAppCtrl.createQuiz';
 export default class CreateNewQuiz extends LightningElement {
@@ -53,7 +54,7 @@ export default class CreateNewQuiz extends LightningElement {
     }
 
     handleOptionsChange(event) {
-        this.questionWithOptionsList[event.currentTarget.dataset.index]['options'] = event.detail;
+        this.questionWithOptionsList[event.currentTarget.dataset.index].options= event.detail;
     }
 
     handleAnswerChange(event) {
@@ -76,11 +77,30 @@ export default class CreateNewQuiz extends LightningElement {
                     quizTime : this.quizTime
                 })
             .then(result => {
-                console.log('result ', result);
+                this.sendToastMessage(
+                    'Success',
+                    'Quiz '+result+' is created nevigating to record...',
+                    'success'
+                );
                 window.location.href = '/'+result;
             })
             .catch(error => {
                 console.log('error creating quiz ', error);
+                this.sendToastMessage(
+                    'Error',
+                    'There is some error make sure you have feild all required fields',
+                    'error'
+                );
+                
             })
+    }
+
+    sendToastMessage(titleText, messageText, variantName){
+        const event = new ShowToastEvent({
+            title: titleText,
+            message: messageText,
+            variant: variantName
+        });
+        this.dispatchEvent(event);
     }
 }

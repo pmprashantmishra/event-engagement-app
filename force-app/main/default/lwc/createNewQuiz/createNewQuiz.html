@@ -1,14 +1,15 @@
 <template>
-    <lightning-input type="text" label="Quiz Name" onchange={handleQuizNameChange}></lightning-input>
-    <lightning-input type="number" label="Quiz Time" onchange={handleQuizTimeChange}></lightning-input>
-    <lightning-input type="number" label="Quiz Order" onchange={handleQuizOrderChange}></lightning-input>
+    <lightning-input type="text" label="Quiz Name" onchange={handleQuizNameChange} required></lightning-input>
+    <lightning-input type="number" label="Quiz Time" onchange={handleQuizTimeChange} required></lightning-input>
+    <lightning-input type="number" label="Quiz Order" onchange={handleQuizOrderChange} required></lightning-input>
     <lightning-combobox 
         name="Event"
         label="Event Name"
         value={eventValues}
         placeholder="Select Event"
         options={eventOptions}
-        onchange={handleEventChange}>
+        onchange={handleEventChange}
+        required>
     </lightning-combobox>
 
     <!-- question area -->
@@ -17,14 +18,14 @@
             <div key={question}>
                 <div class="slds-m-top_large container slds-p-around_small">
                     <div>Question</div>
-                    <lightning-input type="text" label="Question Text" onchange={handleQuestionChange} data-index={index}></lightning-input>
+                    <lightning-input type="text" label="Question Text" onchange={handleQuestionChange} data-index={index} required></lightning-input>
 
                     <c-question-option-input onoptionchange={handleOptionsChange} data-index={index}></c-question-option-input>
                     
                     <!-- currect Answer -->
-                    <lightning-input type="text" label="Correct Answer" onchange={handleAnswerChange} data-index={index}></lightning-input>
+                    <lightning-input type="text" label="Correct Answer" onchange={handleAnswerChange} data-index={index} required></lightning-input>
                     <!-- Marks -->
-                    <lightning-input type="text" label="Marks" onchange={handleMarksChange} data-index={index}></lightning-input>
+                    <lightning-input type="text" label="Marks" onchange={handleMarksChange} data-index={index} required></lightning-input>
                 </div>
 
 				<div class="slds-m-top_xx-small slds-m-bottom_large">

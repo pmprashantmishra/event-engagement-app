@@ -7,7 +7,7 @@
         <template for:each={optionsList} for:item="option" for:index="index">
             <div key={option} class="slds-p-right_small">
                 <lightning-layout-item size="6" padding="right-small">
-                    <lightning-input type="text" label="Option" onchange={handleOptionChange} data-index={index}></lightning-input>
+                    <lightning-input type="text" label="Option" onchange={handleOptionChange} data-index={index} required></lightning-input>
                 </lightning-layout-item>
             </div>
         </template> 
