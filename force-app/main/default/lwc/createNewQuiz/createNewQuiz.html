@@ -1,5 +1,7 @@
 <template>
     <lightning-input type="text" label="Quiz Name" onchange={handleQuizNameChange}></lightning-input>
+    <lightning-input type="number" label="Quiz Time" onchange={handleQuizTimeChange}></lightning-input>
+    <lightning-input type="number" label="Quiz Order" onchange={handleQuizOrderChange}></lightning-input>
     <lightning-combobox 
         name="Event"
         label="Event Name"
@@ -12,22 +14,26 @@
     <!-- question area -->
     <div class="question-area">
         <template for:each={questionWithOptionsList} for:item="question" for:index="index">
-            <div key={question} class="slds-m-top_large">
-                <!-- Question -->
-                <lightning-input type="text" label="Question Text" onchange={handleQuestionChange} data-index={index}></lightning-input>
-                <!-- Options -->
-                <lightning-input type="text" label="Question 1" onchange={handleOption1Change} data-index={index}></lightning-input>
-                <lightning-input type="text" label="Question 2" onchange={handleOption2Change} data-index={index}></lightning-input>
-                <lightning-input type="text" label="Question 3" onchange={handleOption3Change} data-index={index}></lightning-input>
-                <lightning-input type="text" label="Question 4" onchange={handleOption4Change} data-index={index}></lightning-input>
-                <!-- currect Answer -->
-                <lightning-input type="text" label="Correct Answer" onchange={handleAnswerChange} data-index={index}></lightning-input>
-                <!-- Marks -->
-                <lightning-input type="text" label="Marks" onchange={handleMarksChange} data-index={index}></lightning-input>
+            <div key={question}>
+                <div class="slds-m-top_large container slds-p-around_small">
+                    <div>Question</div>
+                    <lightning-input type="text" label="Question Text" onchange={handleQuestionChange} data-index={index}></lightning-input>
 
-                <lightning-button variant="brand" label="Add" title="Add Question" onclick={handleAddRowClick}></lightning-button>
+                    <c-question-option-input onoptionchange={handleOptionsChange} data-index={index}></c-question-option-input>
+                    
+                    <!-- currect Answer -->
+                    <lightning-input type="text" label="Correct Answer" onchange={handleAnswerChange} data-index={index}></lightning-input>
+                    <!-- Marks -->
+                    <lightning-input type="text" label="Marks" onchange={handleMarksChange} data-index={index}></lightning-input>
+                </div>
+
+				<div class="slds-m-top_xx-small slds-m-bottom_large">
+					<lightning-button variant="brand" label="Add" title="Add Question" onclick={handleAddRowClick}></lightning-button>
+				</div>
             </div>
         </template>
     </div>
-    <lightning-button variant="brand" label="Create" title="Create Quiz" onclick={handleCreateQuizClick}></lightning-button>
+	<div class="slds-m-vertical_small">
+		<lightning-button class="slds-m-top_large" variant="brand" label="Create" title="Create Quiz" onclick={handleCreateQuizClick}></lightning-button>
+	</div>
 </template>

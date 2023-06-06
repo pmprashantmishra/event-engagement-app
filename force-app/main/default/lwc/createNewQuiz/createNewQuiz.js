@@ -6,6 +6,8 @@ export default class CreateNewQuiz extends LightningElement {
     questionWithOptionsList = [];
     eventId;
     quizName;
+    quizOrder;
+    quizTime;
 
     connectedCallback() {
         getEventNamesWithIds()
@@ -22,12 +24,7 @@ export default class CreateNewQuiz extends LightningElement {
         // Question Row
         let questionRow = {
             questionText : '',
-            options : {
-                option1 : '',
-                option2 : '',
-                option3 : '',
-                option4 : ''
-            },
+            options : [],
             correctAnswer : '',
             marks : ''
         }
@@ -42,25 +39,21 @@ export default class CreateNewQuiz extends LightningElement {
         this.quizName = event.target.value;
     }
 
+    handleQuizTimeChange(event){
+        this.quizTime = event.target.value;
+    }
+
+    handleQuizOrderChange(event){
+        this.quizOrder = event.target.value;
+    }
+
     handleQuestionChange(event) {
         // event.detail
         this.questionWithOptionsList[event.currentTarget.dataset.index].questionText = event.target.value;
     }
 
-    handleOption1Change(event) {
-        this.questionWithOptionsList[event.currentTarget.dataset.index].options.option1 = event.target.value;
-    }
-
-    handleOption2Change(event) {
-        this.questionWithOptionsList[event.currentTarget.dataset.index].options.option2 = event.target.value;
-    }
-
-    handleOption3Change(event) {
-        this.questionWithOptionsList[event.currentTarget.dataset.index].options.option3 = event.target.value;
-    }
-
-    handleOption4Change(event) {
-        this.questionWithOptionsList[event.currentTarget.dataset.index].options.option4 = event.target.value;
+    handleOptionsChange(event) {
+        this.questionWithOptionsList[event.currentTarget.dataset.index]['options'] = event.detail;
     }
 
     handleAnswerChange(event) {
@@ -76,9 +69,15 @@ export default class CreateNewQuiz extends LightningElement {
     }
 
     handleCreateQuizClick(){
-        createQuiz({eventId : this.eventId, quizName : this.quizName, quizQuestions : JSON.stringify(this.questionWithOptionsList)})
+        createQuiz({eventId : this.eventId, 
+                    quizName : this.quizName, 
+                    quizQuestions : JSON.stringify(this.questionWithOptionsList),
+                    quizOrder : this.quizOrder,
+                    quizTime : this.quizTime
+                })
             .then(result => {
                 console.log('result ', result);
+                window.location.href = '/'+result;
             })
             .catch(error => {
                 console.log('error creating quiz ', error);
