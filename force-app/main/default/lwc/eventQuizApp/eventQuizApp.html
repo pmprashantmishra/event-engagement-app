@@ -1,0 +1,30 @@
+<template>
+    <template if:true={resultScreen}>
+        <div class="slds-text-align_center slds-p-top_medium">
+            <lightning-icon
+                icon-name="action:approval"
+                alternative-text="Approved"
+                title="Approved"
+            ></lightning-icon>
+            <div class="slds-m-top_x-large">
+                Quiz Complete. You answered {correctAnsLength} questions correctly, and earned {totalMarks} points.
+            </div>
+        </div>
+    </template>
+    <template if:true={quizScreen}>
+        <template for:each={questions} for:item="question" for:index="index">
+            <div key={question.questionText}>
+                <lightning-radio-group 
+                name={question.questionText}
+                label={question.questionText}
+                options={question.options}
+                value={value}
+                onchange={handleOptionSelect}
+                data-index = {index}
+                type="radio">
+                </lightning-radio-group>
+            </div>
+        </template>
+        <lightning-button variant="brand" label="Submit" title="Submit" onclick={handleSubmit}></lightning-button>
+    </template>
+</template>
