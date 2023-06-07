@@ -2,41 +2,7 @@ import { LightningElement, api } from 'lwc';
 import getActiveQuizEvent from '@salesforce/apex/EventQuizAppCtlr.getActiveQuizEvent';
 export default class EventQuizApp extends LightningElement {
     @api activeEventId = 'a041y000004DQQ5AAO';// hardcore for now
-    questions = [
-            {
-                "questionText": "What is salesforce",
-                "options": [
-                    {"label": "CRM", "value": "CRM"},
-                    {"label": "SFDC", "value": "SFDC"},
-                    {"label": "Amzon", "value": "Amzon"},
-                    {"label": "Google", "value": "Google"},
-                    ],
-                "correctAnswer": "CRM",
-                "marks": "5"
-            },
-            {
-                "questionText": "What is CRM",
-                "options": [
-                    {"label": "CRM", "value": "CRM"},
-                    {"label": "SFDC", "value": "SFDC"},
-                    {"label": "Amzon", "value": "Amzon"},
-                    {"label": "Google", "value": "Google"},
-                    ],
-                "correctAnswer": "SFDC",
-                "marks": "5"
-            },
-            {
-                "questionText": "What is APEX",
-                "options": [
-                    {"label": "CRM", "value": "CRM"},
-                    {"label": "SFDC", "value": "SFDC"},
-                    {"label": "Amzon", "value": "Amzon"},
-                    {"label": "Google", "value": "Google"},
-                    ],
-                "correctAnswer": "Google",
-                "marks": "5"
-            }
-        ];
+    questions;
     correctAns = [];
     totalMarks;
     quizTimmer;
@@ -50,15 +16,19 @@ export default class EventQuizApp extends LightningElement {
         this.quizScreen = !localStorage.getItem('resultScreen');
         this.totalMarks = localStorage.getItem('totalMarks');
         this.correctAnsLength = localStorage.getItem('correctAnsLength');
-        // if(this.quizScreen)
-            // getActiveQuizEvent({activeEventId:this.activeEventId}).then(result =>{
-            //     console.log('OUTPUT : ',result);
-            //     this.questions = result.Questions__c;
-            //     this.quizTimmer = result.Quiz_Time__c;
-            //     console.log('Oues JSON : ',JSON.stringify(result.Questions__c));
-            // }).catch(error =>{
-            //     console.log('error : ',error);
-            // });
+        if(this.quizScreen){
+            getActiveQuizEvent({activeEventId:this.activeEventId}).then(result =>{
+                this.questions = JSON.parse(result.Questions__c.replaceAll('\'',''));
+                this.quizTimmer = result.Quiz_Time__c;
+                let i = 0;
+                this.questions = this.questions.map((item,index) => {
+                    item.questionText = `${index+1}. ${item.questionText}`;
+                    return item;
+                });
+            }).catch(error =>{
+                console.log('error : ',error);
+            });
+        }
     }
 
     handleOptionSelect(event){
