@@ -1,5 +1,13 @@
 .container {
-	border: 1px solid #d8dde6;
+	border-radius: 8px;
 	margin-top: 10px;
 	background-color: rgb(242 242 242);
+}
+.question-head {
+	margin-top: 10px;
+	border-radius: 8px;
+	background-color: rgb(242 242 242);
+	font-size: 15px;
+	font-weight: 400;
+	color: rgb(24, 24, 24);
 }

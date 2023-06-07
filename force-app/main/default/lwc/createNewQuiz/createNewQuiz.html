@@ -11,7 +11,9 @@
 		onchange={handleEventChange}
 		required>
 	</lightning-combobox>
-
+	<div class="question-head slds-p-around_xx-small">
+		Questions
+	</div>
 	<!-- question area -->
 	<div class="question-area">
 		<template for:each={questionWithOptionsList} for:item="question" for:index="index">

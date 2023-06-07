@@ -70,29 +70,54 @@ export default class CreateNewQuiz extends LightningElement {
 	}
 
 	handleCreateQuizClick(){
-		createQuiz({eventId : this.eventId,
-					quizName : this.quizName,
-					quizQuestions : JSON.stringify(this.questionWithOptionsList),
-					quizOrder : this.quizOrder,
-					quizTime : this.quizTime
-				})
-			.then(result => {
-				this.sendToastMessage(
-					'Success',
-					'Quiz '+result+' is created nevigating to record...',
-					'success'
-				);
-				window.location.href = '/'+result;
-			})
-			.catch(error => {
-				console.log('error creating quiz ', error);
-				this.sendToastMessage(
-					'Error',
-					'There is some error make sure you have feild all required fields',
-					'error'
-				);
+		const allValid = this.validateInputs();
 
-			})
+		if(allValid){
+			createQuiz({eventId : this.eventId,
+						quizName : this.quizName,
+						quizQuestions : JSON.stringify(this.questionWithOptionsList),
+						quizOrder : this.quizOrder,
+						quizTime : this.quizTime
+					})
+				.then(result => {
+					this.sendToastMessage(
+						'Success',
+						'Quiz '+result+' is created navigating to record...',
+						'success'
+					);
+					window.location.href = '/'+result;
+				})
+				.catch(error => {
+					console.log('error creating quiz ', error);
+					this.sendToastMessage(
+						'Error',
+						'There is some error make sure you have filled all required fields',
+						'error'
+					);
+
+				})
+		}
+	}
+
+	validateInputs(){
+		const inputValid = [...this.template.querySelectorAll("lightning-input")].reduce((validSoFar, inputCmp) => {
+			inputCmp.reportValidity();
+			return validSoFar && inputCmp.checkValidity();
+		}, true);
+
+		const comboBoxValid = [...this.template.querySelectorAll("lightning-combobox")].reduce((validSoFar, inputCmp) => {
+			inputCmp.reportValidity();
+			return validSoFar && inputCmp.checkValidity();
+		}, true);
+
+		/* const optionValid = [...this.template.querySelectorAll("c-question-option-input > lightning-input")].reduce((validSoFar, inputCmp) => {
+			inputCmp.reportValidity();
+			return validSoFar && inputCmp.checkValidity();
+		}, true); */
+
+		const allValid = inputValid && comboBoxValid;
+
+		return allValid;
 	}
 
 	sendToastMessage(titleText, messageText, variantName){
