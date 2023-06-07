@@ -647,4 +647,45 @@ public without sharing class EventAppCtrl {
         @AuraEnabled
         public String message;
     }
+
+    @AuraEnabled
+    public static List<EventNameWithIdResponse> getEventNamesWithIds(){
+        try {
+            List<Trailblazer_Event__c> eventList = [SELECT Id, Name FROM Trailblazer_Event__c];
+            List<EventNameWithIdResponse> responeList = new List<EventNameWithIdResponse>();
+            for(Trailblazer_Event__c te : eventList) {
+                EventNameWithIdResponse response = new EventNameWithIdResponse();
+                response.label = te.Name;
+                response.value = te.Id;
+                responeList.add(response);
+            }
+            return responeList;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    public class EventNameWithIdResponse {
+        @AuraEnabled
+        public String label;
+        @AuraEnabled
+        public String value;
+    }
+
+    @AuraEnabled
+    public static Id createQuiz(Id eventId, String quizName, String quizQuestions, Integer quizTime, Integer quizOrder){
+        try {
+            Quiz__c quiz = new Quiz__c(
+                Name = quizName,
+                Trailblazer_Event__c = eventId,
+                Questions__c = quizQuestions,
+                Quiz_Time__c = quizTime,
+                Sort_Order__c = quizOrder
+            );
+            insert quiz;
+            return quiz.Id;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
 }
