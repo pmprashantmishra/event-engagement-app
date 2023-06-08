@@ -4,7 +4,7 @@ export default class ScanQRCode extends LightningElement {
     iframeLoaded = false;
 
     receiveMessage = (message) => {
-        if (message.origin === "https://venerable-strudel-b9e4e9.netlify.app") {
+        if (message.origin === "https://stately-griffin-098689.netlify.app") {
             const event = new CustomEvent("scancomplete", {
                 detail: { message }
             });
